@@ -4,9 +4,6 @@ import 'package:anime_app/fitness_app/models/tabIcon_data.dart';
 import 'package:anime_app/main.dart';
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-import '../models/tabIcon_data.dart';
-
 class BottomBarView extends StatefulWidget {
   const BottomBarView(
       {Key? key, this.tabIconsList, this.changeIndex, this.addClick})
@@ -47,19 +44,21 @@ class _BottomBarViewState extends State<BottomBarView>
                 color: FitnessAppTheme.white,
                 elevation: 16.0,
                 clipper: TabClipper(
-                    radius: Tween<double>(begin: 0.0, end: 1.0)
-                            .animate(CurvedAnimation(
-                                parent: animationController!,
-                                curve: Curves.fastOutSlowIn))
-                            .value *
-                        38.0),
+                  radius: Tween<double>(begin: 0.0, end: 38.0)
+                      .animate(
+                        CurvedAnimation(
+                          parent: animationController!,
+                          curve: Curves.fastOutSlowIn,
+                        ),
+                      )
+                      .value,
+                ),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: 62,
+                      height: 60,
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 8, right: 8, top: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -80,14 +79,14 @@ class _BottomBarViewState extends State<BottomBarView>
                                     widget.changeIndex!(1);
                                   }),
                             ),
-                            SizedBox(
-                              width: Tween<double>(begin: 0.0, end: 1.0)
-                                      .animate(CurvedAnimation(
-                                          parent: animationController!,
-                                          curve: Curves.fastOutSlowIn))
-                                      .value *
-                                  64.0,
-                            ),
+                            // SizedBox(
+                            //   width: Tween<double>(begin: 0.0, end: 1.0)
+                            //           .animate(CurvedAnimation(
+                            //               parent: animationController!,
+                            //               curve: Curves.fastOutSlowIn))
+                            //           .value *
+                            //       64.0,
+                            // ),
                             Expanded(
                               child: TabIcons(
                                   tabIconData: widget.tabIconsList?[2],
@@ -119,67 +118,67 @@ class _BottomBarViewState extends State<BottomBarView>
             );
           },
         ),
-        Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
-          child: SizedBox(
-            width: 38 * 2.0,
-            height: 38 + 62.0,
-            child: Container(
-              alignment: Alignment.topCenter,
-              color: Colors.transparent,
-              child: SizedBox(
-                width: 38 * 2.0,
-                height: 38 * 2.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(
-                            parent: animationController!,
-                            curve: Curves.fastOutSlowIn)),
-                    child: Container(
-                      // alignment: Alignment.center,s
-                      decoration: BoxDecoration(
-                        color: FitnessAppTheme.nearlyDarkBlue,
-                        gradient: LinearGradient(
-                            colors: [
-                              FitnessAppTheme.nearlyDarkBlue,
-                              HexColor('#6A88E5'),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight),
-                        shape: BoxShape.circle,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              color: FitnessAppTheme.nearlyDarkBlue
-                                  .withOpacity(0.4),
-                              offset: const Offset(8.0, 16.0),
-                              blurRadius: 16.0),
-                        ],
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: Colors.white.withOpacity(0.1),
-                          highlightColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          onTap: widget.addClick,
-                          child: Icon(
-                            Icons.add,
-                            color: FitnessAppTheme.white,
-                            size: 32,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding:
+        //       EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+        //   child: SizedBox(
+        //     width: 38 * 2.0,
+        //     height: 38 + 62.0,
+        //     child: Container(
+        //       alignment: Alignment.topCenter,
+        //       color: Colors.transparent,
+        //       child: SizedBox(
+        //         width: 38 * 2.0,
+        //         height: 38 * 2.0,
+        //         child: Padding(
+        //           padding: const EdgeInsets.all(8.0),
+        //           // child: ScaleTransition(
+        //           //   alignment: Alignment.center,
+        //           //   scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+        //           //       CurvedAnimation(
+        //           //           parent: animationController!,
+        //           //           curve: Curves.fastOutSlowIn)),
+        //           //   child: Container(
+        //           //     // alignment: Alignment.center,s
+        //           //     decoration: BoxDecoration(
+        //           //       color: FitnessAppTheme.nearlyDarkBlue,
+        //           //       gradient: LinearGradient(
+        //           //           colors: [
+        //           //             FitnessAppTheme.nearlyDarkBlue,
+        //           //             HexColor('#6A88E5'),
+        //           //           ],
+        //           //           begin: Alignment.topLeft,
+        //           //           end: Alignment.bottomRight),
+        //           //       shape: BoxShape.circle,
+        //           //       boxShadow: <BoxShadow>[
+        //           //         BoxShadow(
+        //           //             color: FitnessAppTheme.nearlyDarkBlue
+        //           //                 .withOpacity(0.4),
+        //           //             offset: const Offset(8.0, 16.0),
+        //           //             blurRadius: 16.0),
+        //           //       ],
+        //           //     ),
+        //           //     child: Material(
+        //           //       color: Colors.transparent,
+        //           //       child: InkWell(
+        //           //         splashColor: Colors.white.withOpacity(0.1),
+        //           //         highlightColor: Colors.transparent,
+        //           //         focusColor: Colors.transparent,
+        //           //         onTap: widget.addClick,
+        //           //         child: Icon(
+        //           //           Icons.add,
+        //           //           color: FitnessAppTheme.white,
+        //           //           size: 32,
+        //           //         ),
+        //           //       ),
+        //           //     ),
+        //           //   ),
+        //           // ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
@@ -330,49 +329,20 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
 }
 
 class TabClipper extends CustomClipper<Path> {
-  TabClipper({this.radius = 38.0});
-
+  TabClipper({required this.radius});
   final double radius;
 
   @override
   Path getClip(Size size) {
     final Path path = Path();
-
-    final double v = radius * 2;
     path.lineTo(0, 0);
-    path.arcTo(Rect.fromLTWH(0, 0, radius, radius), degreeToRadians(180),
-        degreeToRadians(90), false);
-    path.arcTo(
-        Rect.fromLTWH(
-            ((size.width / 2) - v / 2) - radius + v * 0.04, 0, radius, radius),
-        degreeToRadians(270),
-        degreeToRadians(70),
-        false);
-
-    path.arcTo(Rect.fromLTWH((size.width / 2) - v / 2, -v / 2, v, v),
-        degreeToRadians(160), degreeToRadians(-140), false);
-
-    path.arcTo(
-        Rect.fromLTWH((size.width - ((size.width / 2) - v / 2)) - v * 0.04, 0,
-            radius, radius),
-        degreeToRadians(200),
-        degreeToRadians(70),
-        false);
-    path.arcTo(Rect.fromLTWH(size.width - radius, 0, radius, radius),
-        degreeToRadians(270), degreeToRadians(90), false);
     path.lineTo(size.width, 0);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
-
     path.close();
     return path;
   }
 
   @override
   bool shouldReclip(TabClipper oldClipper) => true;
-
-  double degreeToRadians(double degree) {
-    final double redian = (math.pi / 180) * degree;
-    return redian;
-  }
 }
