@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:anime_app/app_theme.dart';
+import 'package:anime_app/components/carousel_anime.dart';
+import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/fitness_app/fitness_app_home_screen.dart';
+import 'package:anime_app/home_screen.dart';
 // import 'package:anime_app/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,9 +39,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: AppTheme.textTheme,
-        platform: TargetPlatform.iOS,
+        platform: TargetPlatform.android,
       ),
-      home: FitnessAppHomeScreen(),
+      home: AnimeHorizontalList(),
     );
   }
 }

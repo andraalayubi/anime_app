@@ -12,6 +12,7 @@ class FitnessAppHomeScreen extends StatefulWidget {
 
 class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     with TickerProviderStateMixin {
+      //Untuk animasi
   AnimationController? animationController;
 
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
@@ -54,7 +55,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
               return Stack(
                 children: <Widget>[
                   tabBody,
-                  bottomBar(),
+                  bottomBar(), //Buttom navigation bar
                 ],
               );
             }
