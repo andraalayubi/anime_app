@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.android,
       ),
-      home: AnimeHorizontalList(),
+      home: CustomAnimeList(),
     );
   }
 }

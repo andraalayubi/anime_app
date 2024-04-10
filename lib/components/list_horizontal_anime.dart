@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Pastikan ini sesuai dengan lokasi file model Anime kamu
+import '../model/anime.dart'; // Adjust according to your file structure
 import '../fetch/populer.dart';
 
 class AnimeHorizontalList extends StatefulWidget {
@@ -23,29 +23,40 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Anime> animes = snapshot.data!;
+          // Adjust height as needed
           return Container(
-            height: 220,
+            height: 220, // Adjust the height to fit your design
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: animes.length,
               itemBuilder: (context, index) {
                 Anime anime = animes[index];
                 return Container(
-                  width: 140, // Lebar setiap item
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          anime.imageUrl,
-                          fit: BoxFit.cover,
+                  width: 140, // Width of each tile
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // Rounded corners
+                    ),
+                    elevation: 5, // Shadow effect
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Image.network(
+                            anime.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Text(
-                        anime.title,
-                        style: TextStyle(fontSize: 14),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            anime.title,
+                            style: TextStyle(fontSize: 14),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   margin: EdgeInsets.all(4),
                 );
