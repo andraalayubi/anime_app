@@ -13,8 +13,8 @@ Future<List<Anime>> fetch8Animes() async {
   }
 }
 
-Future<List<Anime>> fetchAnimes() async {
-  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/top/anime'));
+Future<List<Anime>> fetchAnimes(int i) async {
+  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/top/anime?page=$i'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body)['data'];
