@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Adjust according to your file structure
+import '../model/anime.dart'; // Adjust the path as needed
+import '../fetch/populer.dart';
 
-class AnimeVerticalList extends StatefulWidget {
-  final Future<List<Anime>> Function(int halaman) fetchAnimes;
-
-  AnimeVerticalList({required this.fetchAnimes});
-
+class CustomAnimeList extends StatefulWidget {
   @override
-  _AnimeVerticalListState createState() => _AnimeVerticalListState();
+  _CustomAnimeListState createState() => _CustomAnimeListState();
 }
 
-class _AnimeVerticalListState extends State<AnimeVerticalList> {
+class _CustomAnimeListState extends State<CustomAnimeList> {
   late Future<List<Anime>> futureAnimes;
   int halaman = 1;
 
   @override
   void initState() {
     super.initState();
-    futureAnimes = widget.fetchAnimes(halaman);
+    futureAnimes = fetchAnimes(halaman);
   }
 
   @override
@@ -108,6 +105,31 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
               return Center(child: CircularProgressIndicator());
             },
           ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                if (halaman > 1) {
+                  setState(() {
+                    halaman--;
+                    futureAnimes = fetchAnimes(halaman);
+                  });
+                }
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.arrow_forward),
+              onPressed: () {
+                setState(() {
+                  halaman++;
+                  futureAnimes = fetchAnimes(halaman);
+                });
+              },
+            ),
+          ],
         ),
       ],
     );
