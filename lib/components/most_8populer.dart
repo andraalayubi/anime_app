@@ -1,5 +1,6 @@
 import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/components/search_page.dart';
+import 'package:anime_app/model/anime.dart';
 import 'package:flutter/material.dart';
 import '../fetch/populer.dart';
 import 'package:anime_app/components/list_vertical_anime copy.dart';
@@ -32,34 +33,11 @@ class _Most8PopulerState extends State<Most8Populer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Most Popular',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CustomAnimeList()),
-                    );
-                  },
-                  child: Text(
-                    'See more',
-                    style: TextStyle(fontSize: 16, color: Colors.blue),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          AnimeHorizontalList(fetchAnimes: fetch8Animes)
+          buildCarousel('Most Popular', fetch8Animes),
+          buildCarousel('Available Now', fetch8AvailableNow),
+          buildCarousel('Coming Soon', fetch8ComingSoon),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -81,6 +59,39 @@ class _Most8PopulerState extends State<Most8Populer> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
+    );
+  }
+
+  Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListAnimePopuler()),
+                  );
+                },
+                child: Text(
+                  'See more',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+            ],
+          ),
+        ),
+        AnimeHorizontalList(fetch: fetchAnimes)
+      ],
     );
   }
 }

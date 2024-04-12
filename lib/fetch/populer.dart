@@ -23,3 +23,25 @@ Future<List<Anime>> fetchAnimes(int i) async {
     throw Exception('Failed to load anime list');
   }
 }
+
+Future<List<Anime>> fetch8AvailableNow() async {
+  final response = await http.get(Uri.parse('https://api.example.com/anime/available_now?limit=8'));
+
+  if (response.statusCode == 200) {
+    List jsonResponse = json.decode(response.body);
+    return jsonResponse.map((item) => Anime.fromJson(item)).toList();
+  } else {
+    throw Exception('Failed to load available now anime');
+  }
+}
+
+Future<List<Anime>> fetch8ComingSoon() async {
+  final response = await http.get(Uri.parse('https://api.example.com/anime/coming_soon?limit=8'));
+
+  if (response.statusCode == 200) {
+    List jsonResponse = json.decode(response.body);
+    return jsonResponse.map((item) => Anime.fromJson(item)).toList();
+  } else {
+    throw Exception('Failed to load coming soon anime');
+  }
+}

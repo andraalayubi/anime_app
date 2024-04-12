@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust according to your file structure
 
 class AnimeHorizontalList extends StatefulWidget {
-  final Future<List<Anime>> Function() fetchAnimes;
+  final Future<List<Anime>> Function() fetch;
 
-  AnimeHorizontalList({required this.fetchAnimes});
+  AnimeHorizontalList({required this.fetch});
 
   @override
   _AnimeHorizontalListState createState() => _AnimeHorizontalListState();
@@ -16,7 +16,7 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
   @override
   void initState() {
     super.initState();
-    futureAnimes = widget.fetchAnimes();
+    futureAnimes = widget.fetch();
   }
 
   @override
