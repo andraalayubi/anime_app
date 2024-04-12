@@ -35,7 +35,7 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        AnimeVerticalList(fetchAnimes: fetchAllComingSoon, halaman: halaman),
+        AnimeVerticalList(fetchAnimes: futureAnimes, halaman: halaman),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
