@@ -1,7 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:anime_app/components/list_vertical_anime.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust the path as needed
-import '../fetch/populer.dart';
+import '../fetch/fetch.dart';
 
 class ListAnimePopuler extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _ListAnimePopulerState extends State<ListAnimePopuler> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        AnimeVerticalList(fetchAnimes: fetchAnimes, halaman: halaman),
+        AnimeVerticalList(fetchAnimes: fetchAllPopular, halaman: halaman),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

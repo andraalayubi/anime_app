@@ -2,15 +2,15 @@ import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/components/search_page.dart';
 import 'package:anime_app/model/anime.dart';
 import 'package:flutter/material.dart';
-import '../fetch/populer.dart';
-import 'package:anime_app/components/list_vertical_anime copy.dart';
+import '../fetch/fetch.dart';
+import 'package:anime_app/components/populer_anime_page.dart';
 
-class Most8Populer extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _Most8PopulerState createState() => _Most8PopulerState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _Most8PopulerState extends State<Most8Populer> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -35,7 +35,7 @@ class _Most8PopulerState extends State<Most8Populer> {
     return Scaffold(
       body: ListView(
         children: [
-          buildCarousel('Most Popular', fetch8Animes),
+          buildCarousel('Most Popular', fetch8Popular),
           buildCarousel('Available Now', fetch8AvailableNow),
           buildCarousel('Coming Soon', fetch8ComingSoon),
         ],

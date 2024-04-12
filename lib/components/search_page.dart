@@ -1,4 +1,4 @@
-import 'package:anime_app/fetch/populer.dart';
+import 'package:anime_app/fetch/fetch.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust the path as needed
 import '../fetch/search.dart'; // Adjust the path as needed
@@ -17,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     setState(() {
-      futureAnimes = fetchAnimes(1);
+      futureAnimes = fetchAllPopular(1);
     });
   }
 

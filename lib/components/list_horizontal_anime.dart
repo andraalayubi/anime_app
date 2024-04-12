@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Adjust according to your file structure
+import '../model/anime.dart'; // Sesuaikan dengan struktur file Anda
 
 class AnimeHorizontalList extends StatefulWidget {
   final Future<List<Anime>> Function() fetch;
@@ -12,6 +12,7 @@ class AnimeHorizontalList extends StatefulWidget {
 
 class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
   late Future<List<Anime>> futureAnimes;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -23,58 +24,99 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FutureBuilder<List<Anime>>(
-          future: futureAnimes,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<Anime> animes = snapshot.data!;
-              return Container(
-                height: MediaQuery.of(context).size.height *
-                    0.3, // Adjust the height to fit your design
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: animes.length,
-                  itemBuilder: (context, index) {
-                    Anime anime = animes[index];
-                    return Container(
-                      width: 140, // Width of each tile
-                      child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10), // Rounded corners
-                        ),
-                        elevation: 5, // Shadow effect
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Image.network(
-                                anime.imageUrl,
-                                fit: BoxFit.cover,
-                              ),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            FutureBuilder<List<Anime>>(
+              future: futureAnimes,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Anime> animes = snapshot.data!;
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: animes.length,
+                      itemBuilder: (context, index) {
+                        Anime anime = animes[index];
+                        return Container(
+                          width: 140,
+                          child: Card(
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                anime.title,
-                                style: TextStyle(fontSize: 14),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            elevation: 5,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Image.network(
+                                    anime.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    anime.title,
+                                    style: TextStyle(fontSize: 14),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      margin: EdgeInsets.all(4),
-                    );
-                  },
+                          ),
+                          margin: EdgeInsets.all(4),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text("Error: ${snapshot.error}"));
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(153, 255, 255, 255),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      _scrollController.animateTo(
+                        _scrollController.offset - 200,
+                        curve: Curves.linear,
+                        duration: Duration(milliseconds: 500),
+                      );
+                    },
+                  ),
                 ),
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text("Error: ${snapshot.error}"));
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(153, 255, 255, 255),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_forward),
+                    onPressed: () {
+                      _scrollController.animateTo(
+                        _scrollController.offset + 200,
+                        curve: Curves.linear,
+                        duration: Duration(milliseconds: 500),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

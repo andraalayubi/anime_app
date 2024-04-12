@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:anime_app/app_theme.dart';
 import 'package:anime_app/components/list_vertical_anime.dart';
 import 'package:anime_app/components/list_horizontal_anime.dart';
-import 'package:anime_app/components/most_8populer.dart';
+import 'package:anime_app/components/home_page.dart';
 import 'package:anime_app/fitness_app/fitness_app_home_screen.dart';
 import 'package:anime_app/home_screen.dart';
 // import 'package:anime_app/home_screen.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.android,
       ),
-      home: Most8Populer(),
+      home: HomePage(),
     );
   }
 }
