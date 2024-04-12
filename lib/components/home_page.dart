@@ -4,7 +4,6 @@ import 'package:anime_app/components/search_page.dart';
 import 'package:anime_app/model/anime.dart';
 import 'package:flutter/material.dart';
 import '../fetch/fetch.dart';
-import 'package:anime_app/components/populer_anime_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
