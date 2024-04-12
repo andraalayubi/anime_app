@@ -25,7 +25,7 @@ Future<List<Anime>> fetchAnimes(int i) async {
 }
 
 Future<List<Anime>> fetch8AvailableNow() async {
-  final response = await http.get(Uri.parse('https://api.example.com/anime/available_now?limit=8'));
+  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/seasons/now?limit=8'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
@@ -36,7 +36,7 @@ Future<List<Anime>> fetch8AvailableNow() async {
 }
 
 Future<List<Anime>> fetch8ComingSoon() async {
-  final response = await http.get(Uri.parse('https://api.example.com/anime/coming_soon?limit=8'));
+  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/seasons/upcoming?limit=8'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
