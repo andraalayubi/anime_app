@@ -6,23 +6,17 @@ import '../model/anime.dart'; // Adjust the path as needed
 import '../fetch/fetch.dart';
 
 class ListAnimesPerPages extends StatefulWidget {
-  final Future<List<Anime>> Function() fetch;
+  final Future<List<Anime>> Function(int halaman) fetch;
+  final String title;
 
-  ListAnimesPerPages({required this.fetch});
+  ListAnimesPerPages({required this.fetch, required this.title});
 
   @override
   _ListAnimesPerPagesState createState() => _ListAnimesPerPagesState();
 }
 
 class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
-  late Future<List<Anime>> futureAnimes;
   int halaman = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    futureAnimes = widget.fetch();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +25,11 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            'Most Popular #' + halaman.toString(),
+            widget.title+' #' + halaman.toString(),
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        AnimeVerticalList(fetchAnimes: futureAnimes, halaman: halaman),
+        AnimeVerticalList(fetchAnimes: widget.fetch, halaman: halaman),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

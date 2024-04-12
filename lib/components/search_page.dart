@@ -1,3 +1,4 @@
+import 'package:anime_app/components/home_page.dart';
 import 'package:anime_app/fetch/fetch.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust the path as needed
@@ -24,6 +25,17 @@ class _SearchPageState extends State<SearchPage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if (index == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else if (index == 1) {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => BookmarkPage()),
+        // );
+      }
     });
   }
 

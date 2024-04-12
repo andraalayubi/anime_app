@@ -1,3 +1,4 @@
+import 'package:anime_app/components/list_animes_per_pages.dart';
 import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/components/search_page.dart';
 import 'package:anime_app/model/anime.dart';
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: ListView(
         children: [
-          buildCarousel('Most Popular', fetch8Popular),
-          buildCarousel('Available Now', fetch8AvailableNow),
-          buildCarousel('Coming Soon', fetch8ComingSoon),
+          buildCarousel('Most Popular', fetch8Popular, fetchAllPopular),
+          buildCarousel('Available Now', fetch8AvailableNow, fetchAllAvailableNow),
+          buildCarousel('Coming Soon', fetch8ComingSoon, fetchAllComingSoon),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes) {
+  Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes, Future<List<Anime>> Function(int i) fetchAnimes2) {
     return Column(
       children: [
         Padding(
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ListAnimePopuler()),
+                        builder: (context) => ListAnimesPerPages(fetch: fetchAnimes2, title: title)),
                   );
                 },
                 child: Text(
@@ -90,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        AnimeHorizontalList(fetch: fetchAnimes)
+        AnimeHorizontalList(fetch: fetchAnimes),
       ],
     );
   }

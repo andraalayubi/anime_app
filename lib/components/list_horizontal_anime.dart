@@ -85,7 +85,7 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromARGB(153, 255, 255, 255),
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                   child: IconButton(
                     icon: Icon(Icons.arrow_back),
@@ -101,7 +101,7 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromARGB(153, 255, 255, 255),
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                   child: IconButton(
                     icon: Icon(Icons.arrow_forward),
