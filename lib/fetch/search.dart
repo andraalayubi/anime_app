@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../model/anime.dart';
 
 Future<List<Anime>> searchAnimes(String i) async {
-  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/top/anime?q=$i'));
+  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/anime?q=$i'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body)['data'];
