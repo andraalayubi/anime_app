@@ -12,3 +12,18 @@ Future<List<Anime>> searchAnimes(String i) async {
     throw Exception('Failed to load anime list');
   }
 }
+
+Future<List<Anime>> animesById(int i) async {
+  final response = await http.get(Uri.parse('https://api.jikan.moe/v4/anime/$i'));
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> jsonResponse = json.decode(response.body);
+    // Disini Anda mengakses langsung data anime dari respons JSON
+    final animeData = jsonResponse['data']; 
+    // Ubah struktur data anime menjadi List<Anime>
+    final List<Anime> animeList = [Anime.fromJson(animeData)]; 
+    return animeList;
+  } else {
+    throw Exception('Failed to load anime list');
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:anime_app/components/detail_anime_page.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Sesuaikan dengan struktur file Anda
 
@@ -40,34 +41,43 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                       itemCount: animes.length,
                       itemBuilder: (context, index) {
                         Anime anime = animes[index];
-                        return Container(
-                          width: 140,
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 5,
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Image.network(
-                                    anime.imageUrl,
-                                    fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AnimeDetailPage(id: 1)),
+                            );
+                          },
+                          child: Container(
+                            width: 140,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 5,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Image.network(
+                                      anime.imageUrl,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    anime.title,
-                                    style: TextStyle(fontSize: 14),
-                                    overflow: TextOverflow.ellipsis,
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      anime.title,
+                                      style: TextStyle(fontSize: 14),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
+                            margin: EdgeInsets.all(4),
                           ),
-                          margin: EdgeInsets.all(4),
                         );
                       },
                     ),

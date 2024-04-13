@@ -3,8 +3,14 @@ class Anime {
   final String imageUrl;
   final String title;
   final List<String>? genres;
-  final int? year;  // Perhatikan bahwa ini sekarang bertipe nullable
-  final double? score;  // Ini juga nullable
+  final int? year;
+  final double? score;
+  final int? episodes;
+  final String? status;
+  final String? rating;
+  final String? synopsis;
+  final String? airedFrom;
+  final String? airedTo;
 
   Anime({
     required this.malId,
@@ -13,6 +19,12 @@ class Anime {
     this.genres,
     this.year,
     this.score,
+    this.episodes,
+    this.status,
+    this.rating,
+    this.synopsis,
+    this.airedFrom,
+    this.airedTo,
   });
 
   factory Anime.fromJson(Map<String, dynamic> json) {
@@ -23,8 +35,14 @@ class Anime {
       imageUrl: json['images']['jpg']['image_url'],
       title: json['title'],
       genres: genres,
-      year: json['year'] ?? 0,  // Memberikan nilai default jika null
-      score: (json['score'] ?? 0).toDouble(),  // Memberikan nilai default dan memastikan tipe double
+      year: json['year'] ?? 0,
+      score: (json['score'] ?? 0).toDouble(),
+      episodes: json['episodes'] ?? 0,
+      status: json['status'] ?? '',
+      rating: json['rating'] ?? '',
+      synopsis: json['synopsis'] ?? '',
+      airedFrom: json['aired']['form'] ?? '',
+      airedTo: json['aired']['to'] ?? '',
     );
   }
 
