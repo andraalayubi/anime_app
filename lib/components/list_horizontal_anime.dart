@@ -46,7 +46,8 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AnimeDetailPage(id: 1)),
+                                  builder: (context) =>
+                                      AnimeDetailPage(id: anime.malId)),
                             );
                           },
                           child: Container(
@@ -59,7 +60,8 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                               elevation: 5,
                               child: Column(
                                 children: [
-                                  Expanded(
+                                  AspectRatio(
+                                    aspectRatio: 16 / 17,
                                     child: Image.network(
                                       anime.imageUrl,
                                       fit: BoxFit.cover,

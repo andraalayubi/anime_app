@@ -6,11 +6,10 @@ class Anime {
   final int? year;
   final double? score;
   final int? episodes;
+  final String? type;
   final String? status;
   final String? rating;
   final String? synopsis;
-  final String? airedFrom;
-  final String? airedTo;
 
   Anime({
     required this.malId,
@@ -23,8 +22,7 @@ class Anime {
     this.status,
     this.rating,
     this.synopsis,
-    this.airedFrom,
-    this.airedTo,
+    this.type
   });
 
   factory Anime.fromJson(Map<String, dynamic> json) {
@@ -41,8 +39,7 @@ class Anime {
       status: json['status'] ?? '',
       rating: json['rating'] ?? '',
       synopsis: json['synopsis'] ?? '',
-      airedFrom: json['aired']['form'] ?? '',
-      airedTo: json['aired']['to'] ?? '',
+      type: json['type'] ?? '',
     );
   }
 

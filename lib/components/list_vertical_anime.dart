@@ -46,7 +46,7 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AnimeDetailPage(id: 1)),
+                          builder: (context) => AnimeDetailPage(id: anime.malId)),
                     );
                   },
                   child: Container(
@@ -71,7 +71,7 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                           child: Image.network(
                             anime.imageUrl,
                             width: 100,
-                            height: 100,
+                            height: 140,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -96,7 +96,7 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                               ),
                               SizedBox(height: 2),
                               Text(
-                                'Year: ${anime.year?.toString() ?? 'N/A'}',
+                                'Year: ${anime.year.toString()}',
                                 style: TextStyle(
                                     fontSize: 14.0, color: Colors.grey[600]),
                               ),

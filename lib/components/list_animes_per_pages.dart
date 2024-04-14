@@ -20,40 +20,50 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            widget.title+' #' + halaman.toString(),
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(
+            widget.title + ' #' + halaman.toString(),
+            style: const TextStyle(color: Colors.black, fontSize: 24),
           ),
-        ),
-        AnimeVerticalList(fetchAnimes: widget.fetch, halaman: halaman),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                if (halaman > 1) {
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+          ),
+          AnimeVerticalList(fetchAnimes: widget.fetch, halaman: halaman),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  if (halaman > 1) {
+                    setState(() {
+                      halaman--;
+                    });
+                  }
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward),
+                onPressed: () {
                   setState(() {
-                    halaman--;
+                    halaman++;
                   });
-                }
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.arrow_forward),
-              onPressed: () {
-                setState(() {
-                  halaman++;
-                });
-              },
-            ),
-          ],
-        ),
-      ],
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
+import 'package:anime_app/components/bookmark_page.dart';
 import 'package:anime_app/components/list_animes_per_pages.dart';
 import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/components/search_page.dart';
 import 'package:anime_app/model/anime.dart';
+import 'package:anime_app/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import '../fetch/fetch.dart';
 
@@ -13,6 +15,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    loadBookmarks();
+  }
+
+  Future<void> loadBookmarks() async {
+    List<int> ids = await SharedPreferencesUtil.getBookmarkList();
+    setState(() {
+    }); // Pastikan ini dipanggil setelah setState selesai
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -22,10 +36,10 @@ class _HomePageState extends State<HomePage> {
           MaterialPageRoute(builder: (context) => SearchPage()),
         );
       } else if (index == 2) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => BookmarkPage()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BookmarkPage()),
+        );
       }
     });
   }
@@ -33,10 +47,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Anime42',
+          style: const TextStyle(color: Colors.black, fontSize: 24),
+        ),
+        centerTitle: true,
+      ),
       body: ListView(
         children: [
           buildCarousel('Most Popular', fetch8Popular, fetchAllPopular),
-          buildCarousel('Available Now', fetch8AvailableNow, fetchAllAvailableNow),
+          buildCarousel(
+              'Available Now', fetch8AvailableNow, fetchAllAvailableNow),
           buildCarousel('Coming Soon', fetch8ComingSoon, fetchAllComingSoon),
         ],
       ),
@@ -62,7 +84,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes, Future<List<Anime>> Function(int i) fetchAnimes2) {
+  Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes,
+      Future<List<Anime>> Function(int i) fetchAnimes2) {
     return Column(
       children: [
         Padding(
@@ -79,7 +102,8 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ListAnimesPerPages(fetch: fetchAnimes2, title: title)),
+                        builder: (context) => ListAnimesPerPages(
+                            fetch: fetchAnimes2, title: title)),
                   );
                 },
                 child: Text(
