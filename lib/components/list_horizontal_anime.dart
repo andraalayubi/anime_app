@@ -1,4 +1,4 @@
-import 'package:anime_app/components/detail_anime_page.dart';
+import 'package:anime_app/pages/detail_anime_page.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Sesuaikan dengan struktur file Anda
 
@@ -34,7 +34,7 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 if (snapshot.hasData) {
                   List<Anime> animes = snapshot.data!;
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: ListView.builder(
                       controller: _scrollController,
                       scrollDirection: Axis.horizontal,

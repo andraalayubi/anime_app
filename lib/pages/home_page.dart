@@ -1,7 +1,7 @@
-import 'package:anime_app/components/bookmark_page.dart';
+import 'package:anime_app/pages/bookmark_page.dart';
 import 'package:anime_app/components/list_animes_per_pages.dart';
 import 'package:anime_app/components/list_horizontal_anime.dart';
-import 'package:anime_app/components/search_page.dart';
+import 'package:anime_app/pages/search_page.dart';
 import 'package:anime_app/model/anime.dart';
 import 'package:anime_app/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';

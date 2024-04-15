@@ -1,4 +1,4 @@
-import 'package:anime_app/components/detail_anime_page.dart';
+import 'package:anime_app/pages/detail_anime_page.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust according to your file structure
 

@@ -1,4 +1,6 @@
-import 'package:anime_app/components/home_page.dart';
+import 'package:anime_app/components/filter_search.dart';
+import 'package:anime_app/pages/bookmark_page.dart';
+import 'package:anime_app/pages/home_page.dart';
 import 'package:anime_app/fetch/fetch.dart';
 import 'package:flutter/material.dart';
 import '../model/anime.dart'; // Adjust the path as needed
@@ -10,9 +12,14 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  int _selectedIndex = 1;
   late Future<List<Anime>> futureAnimes;
+  int _selectedIndex = 1;
   final TextEditingController _searchController = TextEditingController();
+
+  //Deklarasi variabel filter
+  String? _selectedStatus;
+  String? _selectedType;
+  String? _selectedRating;
 
   @override
   void initState() {
@@ -30,18 +37,22 @@ class _SearchPageState extends State<SearchPage> {
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
-      } else if (index == 1) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => BookmarkPage()),
-        // );
+      } else if (index == 2) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BookmarkPage()),
+        );
       }
     });
   }
 
   void _onSearch(String query) {
     setState(() {
-      futureAnimes = searchAnimes(query);
+      futureAnimes = searchAnimes(
+          query: query,
+          status: _selectedStatus,
+          type: _selectedType,
+          rating: _selectedRating);
     });
   }
 
@@ -64,6 +75,12 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
             ),
+          ),
+          AnimeFilter(
+            onFilterChanged: (status, type, rating) {
+              // Lakukan sesuatu dengan nilai filter yang dipilih
+              print('Status: $status, Type: $type, Rating: $rating');
+            },
           ),
           Expanded(
             child: FutureBuilder<List<Anime>>(
@@ -109,23 +126,31 @@ class _SearchPageState extends State<SearchPage> {
                                   Text(
                                     anime.title,
                                     style: TextStyle(
-                                        fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.deepPurple),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   SizedBox(height: 4),
                                   Text(
                                     'Genres: ${anime.genres?.join(', ')}',
-                                    style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[600]),
                                   ),
                                   SizedBox(height: 2),
                                   Text(
                                     'Year: ${anime.year?.toString() ?? 'N/A'}',
-                                    style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[600]),
                                   ),
                                   SizedBox(height: 2),
                                   Text(
                                     'Rating: ${anime.ratingStars}',
-                                    style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[600]),
                                   ),
                                 ],
                               ),

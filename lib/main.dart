@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'package:anime_app/app_theme.dart';
-import 'package:anime_app/components/home_page.dart';
-// import 'package:anime_app/home_screen.dart';
+import 'package:anime_app/pages/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'navigation_home_screen.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
   //Memastikan bahwa semua widgets Flutter telah diinisialisasi
@@ -20,38 +15,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Mengatur tampilan sistem UI (status bar, navigation bar) sesuai platform
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness:
-          !kIsWeb && Platform.isAndroid ? Brightness.dark : Brightness.light,
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarDividerColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ));
     return MaterialApp(
       title: 'Anime42',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: AppTheme.textTheme,
-        platform: TargetPlatform.android,
       ),
-      home: HomePage(),
+      home: LoadingPage(),
     );
-  }
-}
-
-//mengonversi kode hex menjadi nilai integer
-class HexColor extends Color {
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll('#', '');
-    if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
   }
 }
