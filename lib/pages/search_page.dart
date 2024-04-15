@@ -124,7 +124,7 @@ class _SearchPageState extends State<SearchPage> {
                                 child: Image.network(
                                   anime.imageUrl,
                                   width: 100,
-                                  height: 100,
+                                  height: 140,
                                   fit: BoxFit.cover,
                                 ),
                               ),
