@@ -11,22 +11,23 @@ class Anime {
   final String? rating;
   final String? synopsis;
 
-  Anime({
-    required this.malId,
-    required this.imageUrl,
-    required this.title,
-    this.genres,
-    this.year,
-    this.score,
-    this.episodes,
-    this.status,
-    this.rating,
-    this.synopsis,
-    this.type
-  });
+  Anime(
+      {required this.malId,
+      required this.imageUrl,
+      required this.title,
+      this.genres,
+      this.year,
+      this.score,
+      this.episodes,
+      this.status,
+      this.rating,
+      this.synopsis,
+      this.type});
 
   factory Anime.fromJson(Map<String, dynamic> json) {
-    List<String>? genres = (json['genres'] as List)?.map((genre) => genre['name'].toString()).toList();
+    List<String>? genres = (json['genres'] as List)
+        ?.map((genre) => genre['name'].toString())
+        .toList();
 
     return Anime(
       malId: json['mal_id'],
@@ -46,11 +47,22 @@ class Anime {
   // Metode untuk mengubah skor menjadi bintang dengan penanganan nilai null
   String get ratingStars {
     if (score == null) return '';
+
+    // Memformat score menjadi string dengan 1 digit di belakang koma
+    String scoreString = score!.toStringAsFixed(1);
+
+    // Mengonversi score menjadi angka double
+    double scoreValue = double.parse(scoreString);
+
+    // Menghitung jumlah bintang berdasarkan score
+    int fullStars = (scoreValue / 2).round();
+
+    // Membuat string dari bintang
     String stars = '';
-    int fullStars = score! ~/ 2;  // Menggunakan operator '!' karena score sekarang nullable
     for (int i = 0; i < fullStars; i++) {
       stars += '⭐';
     }
+
     return stars;
   }
 }
