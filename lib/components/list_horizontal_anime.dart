@@ -34,7 +34,7 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 if (snapshot.hasData) {
                   List<Anime> animes = snapshot.data!;
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
+                    height: 185,
                     child: ListView.builder(
                       controller: _scrollController,
                       scrollDirection: Axis.horizontal,

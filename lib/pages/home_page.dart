@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
           style: const TextStyle(color: Colors.black, fontSize: 24),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         children: [

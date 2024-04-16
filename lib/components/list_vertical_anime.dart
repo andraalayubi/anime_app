@@ -93,6 +93,7 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                                 'Genres: ${anime.genres?.join(', ')}',
                                 style: TextStyle(
                                     fontSize: 14.0, color: Colors.grey[600]),
+                                    maxLines: 1,
                               ),
                               SizedBox(height: 2),
                               Text(

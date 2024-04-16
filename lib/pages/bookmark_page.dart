@@ -14,8 +14,9 @@ class BookmarkPage extends StatefulWidget {
 class _BookmarkPageState extends State<BookmarkPage> {
   late List<int>
       bookmarkedIds; // Daftar ID anime yang ditandai sebagai bookmark
-  List<Anime> bookmarkedAnimes = []; // Daftar anime yang ditandai sebagai bookmark
-  int _selectedIndex = 2; 
+  List<Anime> bookmarkedAnimes =
+      []; // Daftar anime yang ditandai sebagai bookmark
+  int _selectedIndex = 2;
 
   @override
   void initState() {
@@ -70,7 +71,12 @@ class _BookmarkPageState extends State<BookmarkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bookmarks'),
+        title: Text(
+          'Bookmarks',
+          style: const TextStyle(color: Colors.black, fontSize: 20),
+        ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: bookmarkedAnimes.length,
