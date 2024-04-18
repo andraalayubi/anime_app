@@ -15,18 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    loadBookmarks();
-  }
-
-  Future<void> loadBookmarks() async {
-    List<int> ids = await SharedPreferencesUtil.getBookmarkList();
-    setState(() {
-    }); // Pastikan ini dipanggil setelah setState selesai
-  }
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -49,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Anime42',
+          'AndraNime',
           style: const TextStyle(color: Colors.black, fontSize: 24),
         ),
         centerTitle: true,
@@ -86,7 +74,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes,
-      Future<List<Anime>> Function(int i) fetchAnimes2) {
+      final Future<List<Anime>> Function(int halaman) fetchAnimes2) {
+    bool isAnimeListReady = false;
+
+    void onAnimeListReady(bool ready) {
+      setState(() {
+        isAnimeListReady = ready;
+      });
+    }
+
     return Column(
       children: [
         Padding(
@@ -115,7 +111,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        AnimeHorizontalList(fetch: fetchAnimes),
+        AnimeHorizontalList(fetch: fetchAnimes, onReady: onAnimeListReady),
+        isAnimeListReady ? Text("Anime List is ready!") : Container(),
       ],
     );
   }

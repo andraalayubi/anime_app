@@ -69,10 +69,10 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
               child: Column(
                 children: <Widget>[
                   AspectRatio(
-                    aspectRatio: 16 / 9, // Ukuran gambar yang direduksi
+                    aspectRatio: 16 / 12,
                     child: Image.network(
                       anime.imageUrl,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                   Container(
@@ -144,7 +144,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                               if (anime.status != null)
                                 _getTimeBoxUI(anime.status!, 'Status'),
                               if (anime.year != null)
-                                _getTimeBoxUI(anime.year!.toString(), 'Release Year'),
+                                _getTimeBoxUI(anime.year!.toString(), 'Year'),
                             ],
                           ),
                           Padding(
@@ -199,6 +199,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   letterSpacing: 0.27,
                   color: Colors.black,
                 ),
+                maxLines: 1,
               ),
               Text(
                 title,
@@ -209,6 +210,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   letterSpacing: 0.27,
                   color: Colors.grey,
                 ),
+                maxLines: 1,
               ),
             ],
           ),

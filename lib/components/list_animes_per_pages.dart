@@ -42,24 +42,39 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () {
-                  if (halaman > 1) {
+              if (halaman > 1)
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
                     setState(() {
                       halaman--;
                     });
-                  }
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.arrow_forward),
-                onPressed: () {
-                  setState(() {
-                    halaman++;
-                  });
-                },
-              ),
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(12),
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    elevation: 4, // Menambahkan bayangan
+                  ),
+                ),
+              Spacer(), // Menambahkan Spacer di sini
+              if (halaman < 17)
+                IconButton(
+                  icon: Icon(Icons.arrow_forward),
+                  onPressed: () {
+                    setState(() {
+                      halaman++;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(12),
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    elevation: 4, // Menambahkan bayangan
+                  ),
+                ),
             ],
           ),
         ],

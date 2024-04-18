@@ -4,8 +4,8 @@ import 'package:anime_app/pages/detail_anime_page.dart';
 import 'package:anime_app/pages/home_page.dart';
 import 'package:anime_app/fetch/fetch.dart';
 import 'package:flutter/material.dart';
-import '../model/anime.dart';
-import '../fetch/search.dart';
+import '../model/anime.dart'; // Adjust the path as needed
+import '../fetch/search.dart'; // Adjust the path as needed
 
 class SearchPage extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     setState(() {
-      futureAnimes = fetchAllPopular(1);
+      futureAnimes = searchAnimes();
     });
   }
 
@@ -56,6 +56,15 @@ class _SearchPageState extends State<SearchPage> {
           rating: _selectedRating);
     });
   }
+  
+  void _onFilterChanged(String? status, String? type, String? rating) {
+    setState(() {
+      _selectedStatus = status;
+      _selectedType = type;
+      _selectedRating = rating;
+      _onSearch(_searchController.text);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +72,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding:
-                const EdgeInsets.only(top: 24, bottom: 8, right: 8, left: 8),
+            padding: const EdgeInsets.only(top: 14.0, right: 8, left: 8),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -79,12 +87,9 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8),
+            padding: const EdgeInsets.all(10.0),
             child: AnimeFilter(
-              onFilterChanged: (status, type, rating) {
-                // Lakukan sesuatu dengan nilai filter yang dipilih
-                print('Status: $status, Type: $type, Rating: $rating');
-              },
+              onFilterChanged: _onFilterChanged,
             ),
           ),
           Expanded(
