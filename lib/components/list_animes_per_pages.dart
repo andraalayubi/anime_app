@@ -53,12 +53,11 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(12),
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    elevation: 4, // Menambahkan bayangan
+                    backgroundColor: Colors.grey[300],
+                    foregroundColor: Colors.black,
                   ),
                 ),
-              Spacer(), // Menambahkan Spacer di sini
+              Spacer(),
               if (halaman < 17)
                 IconButton(
                   icon: Icon(Icons.arrow_forward),
@@ -70,13 +69,12 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(12),
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    elevation: 4, // Menambahkan bayangan
+                    backgroundColor: Colors.grey[300],
+                    foregroundColor: Colors.black,
                   ),
                 ),
             ],
-          ),
+          )
         ],
       ),
     );
