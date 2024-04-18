@@ -1,6 +1,6 @@
 import 'package:anime_app/pages/detail_anime_page.dart';
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Sesuaikan dengan struktur file Anda
+import '../model/anime.dart';
 
 class AnimeHorizontalList extends StatefulWidget {
   final Future<List<Anime>> Function() fetch;
@@ -34,7 +34,11 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 future: futureAnimes,
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(child: Text("Error: ${snapshot.error}"));
+                    return Center(child: Text("Error: ${snapshot.error}",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error, // Error color
+                      ),
+                    ));
                   } else if (snapshot.hasData) {
                     List<Anime> animes = snapshot.data!;
                     return Container(
@@ -74,7 +78,10 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         anime.title,
-                                        style: TextStyle(fontSize: 14),
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Theme.of(context).colorScheme.onSurface, // Text color
+                                        ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
@@ -88,7 +95,11 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                       ),
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).colorScheme.secondary, // Progress indicator color
+                      ),
+                    ));
                   }
                 }),
             Row(
@@ -97,10 +108,11 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromARGB(153, 255, 255, 255),
+                    color: Theme.of(context).colorScheme.background.withAlpha(153), // Button background
                   ),
                   child: IconButton(
                     icon: Icon(Icons.arrow_back),
+                    color: Theme.of(context).colorScheme.onBackground, // Icon color
                     onPressed: () {
                       _scrollController.animateTo(
                         _scrollController.offset - 200,
@@ -113,10 +125,11 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromARGB(153, 255, 255, 255),
+                    color: Theme.of(context).colorScheme.background.withAlpha(153), // Button background
                   ),
                   child: IconButton(
                     icon: Icon(Icons.arrow_forward),
+                    color: Theme.of(context).colorScheme.onBackground, // Icon color
                     onPressed: () {
                       _scrollController.animateTo(
                         _scrollController.offset + 200,
@@ -133,4 +146,5 @@ class _AnimeHorizontalListState extends State<AnimeHorizontalList> {
       ],
     );
   }
+
 }

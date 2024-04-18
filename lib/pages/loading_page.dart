@@ -15,12 +15,9 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   _navigateToHome() async {
-    // Simulasi delay misalnya memuat data
     await Future.delayed(Duration(seconds: 3), () {});
-
-    // Navigasi ke HomePage setelah loading
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => HomePage(), // Ganti dengan halaman utama aplikasi Anda
+      builder: (context) => HomePage(),
     ));
   }
 

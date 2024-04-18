@@ -48,16 +48,10 @@ class Anime {
   String get ratingStars {
     if (score == null) return '';
 
-    // Memformat score menjadi string dengan 1 digit di belakang koma
     String scoreString = score!.toStringAsFixed(1);
-
-    // Mengonversi score menjadi angka double
     double scoreValue = double.parse(scoreString);
-
-    // Menghitung jumlah bintang berdasarkan score
     int fullStars = (scoreValue / 2).round();
 
-    // Membuat string dari bintang
     String stars = '';
     for (int i = 0; i < fullStars; i++) {
       stars += '⭐';

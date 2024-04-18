@@ -51,7 +51,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
             onPressed: toggleBookmark,
             icon: Icon(
               isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ],
@@ -77,7 +77,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(32.0),
                         topRight: Radius.circular(32.0),
@@ -101,7 +101,6 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                               fontWeight: FontWeight.w600,
                               fontSize: 22,
                               letterSpacing: 0.27,
-                              color: Colors.black,
                             ),
                           ),
                           SizedBox(height: 16),
@@ -114,7 +113,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                                   fontWeight: FontWeight.w200,
                                   fontSize: 16,
                                   letterSpacing: 0.27,
-                                  color: Colors.blue,
+                                  color: Theme.of(context).colorScheme.error,
                                 ),
                               ),
                               Row(
@@ -125,11 +124,10 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                                       fontWeight: FontWeight.w200,
                                       fontSize: 22,
                                       letterSpacing: 0.27,
-                                      color: Colors.grey,
                                     ),
                                   ),
                                   Icon(Icons.star,
-                                      color: Colors.blue, size: 24),
+                                      color: Theme.of(context).colorScheme.error, size: 24),
                                 ],
                               ),
                             ],
@@ -156,7 +154,6 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                                 fontWeight: FontWeight.w200,
                                 fontSize: 14,
                                 letterSpacing: 0.27,
-                                color: Colors.black,
                               ),
                             ),
                           ),
@@ -180,9 +177,9 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.background,
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          border: Border.all(color: Colors.grey.withOpacity(0.5)),
+          border: Border.all(color: Theme.of(context).colorScheme.secondary),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -197,7 +194,6 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   letterSpacing: 0.27,
-                  color: Colors.black,
                 ),
                 maxLines: 1,
               ),

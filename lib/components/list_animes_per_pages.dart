@@ -2,7 +2,7 @@
 
 import 'package:anime_app/components/list_vertical_anime.dart';
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Adjust the path as needed
+import '../model/anime.dart';
 import '../fetch/fetch.dart';
 
 class ListAnimesPerPages extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
       appBar: AppBar(
           title: Text(
             widget.title + ' #' + halaman.toString(),
-            style: const TextStyle(color: Colors.black, fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -53,8 +53,8 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(12),
-                    backgroundColor: Colors.grey[300],
-                    foregroundColor: Colors.black,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               Spacer(),
@@ -69,8 +69,8 @@ class _ListAnimesPerPagesState extends State<ListAnimesPerPages> {
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(12),
-                    backgroundColor: Colors.grey[300],
-                    foregroundColor: Colors.black,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.primary,
                   ),
                 ),
             ],

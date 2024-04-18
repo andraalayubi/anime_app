@@ -82,23 +82,23 @@ class _AnimeFilterState extends State<AnimeFilter> {
               value: value,
               child: Text(
                       value,
-                      style: const TextStyle(
-                        color: Colors.grey,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 16.0,
                       ),
                     ),
             );
           })
           .toList(),
-      style: const TextStyle(
-        color: Colors.grey,
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.secondary,
         fontSize: 16.0,
       ),
-      dropdownColor: Colors.white,
+      dropdownColor: Theme.of(context).colorScheme.primary,
       elevation: 8,
       underline: Container(
         height: 2,
-        color: Colors.grey[400],
+        color: Theme.of(context).colorScheme.secondary,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:anime_app/pages/detail_anime_page.dart';
 import 'package:flutter/material.dart';
-import '../model/anime.dart'; // Adjust according to your file structure
+import '../model/anime.dart';
 
 class AnimeVerticalList extends StatefulWidget {
   final Future<List<Anime>> Function(int halaman) fetchAnimes;
@@ -53,7 +53,7 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                     margin: EdgeInsets.all(10.0),
                     padding: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.secondaryContainer,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
@@ -85,26 +85,26 @@ class _AnimeVerticalListState extends State<AnimeVerticalList> {
                                 style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.deepPurple),
+                                    color: Theme.of(context).colorScheme.secondary),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               SizedBox(height: 4),
                               Text(
                                 'Genres: ${anime.genres?.join(', ')}',
                                 style: TextStyle(
-                                    fontSize: 14.0, color: Colors.grey[600]),
+                                    fontSize: 14.0, color: Theme.of(context).colorScheme.secondary),
                               ),
                               SizedBox(height: 2),
                               Text(
                                 'Year: ${anime.year.toString()}',
                                 style: TextStyle(
-                                    fontSize: 14.0, color: Colors.grey[600]),
+                                    fontSize: 14.0, color: Theme.of(context).colorScheme.secondary),
                               ),
                               SizedBox(height: 2),
                               Text(
                                 'Rating: ${anime.ratingStars}',
                                 style: TextStyle(
-                                    fontSize: 14.0, color: Colors.grey[600]),
+                                    fontSize: 14.0, color: Theme.of(context).colorScheme.secondary),
                               ),
                             ],
                           ),

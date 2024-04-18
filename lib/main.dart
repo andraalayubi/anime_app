@@ -1,27 +1,33 @@
-import 'package:anime_app/pages/loading_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:anime_app/pages/home_page.dart';
+import 'package:anime_app/utils/service_preferences.dart';
 
 void main() async {
-  //Memastikan bahwa semua widgets Flutter telah diinisialisasi
   WidgetsFlutterBinding.ensureInitialized();
-  //Mengatur orientasi layar aplikasi ke portrait
-  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((_) => runApp(MyApp()));
+  PreferencesService prefsService = PreferencesService();
+  runApp(MyApp(prefsService: prefsService));
 }
 
 class MyApp extends StatelessWidget {
+  final PreferencesService prefsService;
+
+  MyApp({required this.prefsService});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Anime42',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider<PreferencesService>(
+      create: (_) => prefsService,
+      child: Consumer<PreferencesService>(
+        builder: (context, prefs, child) {
+          return MaterialApp(
+            title: 'Anime42',
+            debugShowCheckedModeBanner: false,
+            theme: prefs.isDarkTheme ? ThemeData.dark() : ThemeData.light(),
+            home: HomePage(),
+          );
+        },
       ),
-      home: LoadingPage(),
     );
   }
 }

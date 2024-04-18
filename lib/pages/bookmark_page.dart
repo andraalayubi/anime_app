@@ -12,10 +12,8 @@ class BookmarkPage extends StatefulWidget {
 }
 
 class _BookmarkPageState extends State<BookmarkPage> {
-  late List<int>
-      bookmarkedIds;
-  List<Anime> bookmarkedAnimes =
-      [];
+  late List<int> bookmarkedIds;
+  List<Anime> bookmarkedAnimes = [];
   int _selectedIndex = 2;
 
   @override
@@ -70,7 +68,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
       appBar: AppBar(
         title: Text(
           'Bookmarks',
-          style: const TextStyle(color: Colors.black, fontSize: 20),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -126,7 +123,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.tertiary,
         onTap: _onItemTapped,
       ),
     );

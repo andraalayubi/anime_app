@@ -1,10 +1,14 @@
+// ignore_for_file: unused_import
+
 import 'package:anime_app/pages/bookmark_page.dart';
 import 'package:anime_app/components/list_animes_per_pages.dart';
 import 'package:anime_app/components/list_horizontal_anime.dart';
 import 'package:anime_app/pages/search_page.dart';
 import 'package:anime_app/model/anime.dart';
+import 'package:anime_app/utils/service_preferences.dart';
 import 'package:anime_app/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../fetch/fetch.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,12 +40,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'AndraNime',
-          style: const TextStyle(color: Colors.black, fontSize: 24),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
+        title: Text('AndraNime'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.brightness_6),
+            onPressed: () {
+              final provider =
+                  Provider.of<PreferencesService>(context, listen: false);
+              provider.updateTheme(!provider.isDarkTheme);
+            },
+            tooltip: 'Toggle Theme',
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -67,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.tertiary,
         onTap: _onItemTapped,
       ),
     );
@@ -75,12 +85,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildCarousel(String title, Future<List<Anime>> Function() fetchAnimes,
       final Future<List<Anime>> Function(int halaman) fetchAnimes2) {
-    bool isAnimeListReady = false;
-
     void onAnimeListReady(bool ready) {
-      setState(() {
-        isAnimeListReady = ready;
-      });
+      setState(() {});
     }
 
     return Column(
@@ -92,7 +98,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).colorScheme.onBackground, // For title
+                ),
               ),
               GestureDetector(
                 onTap: () {
@@ -105,14 +116,16 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: Text(
                   'See more',
-                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.secondary, // For link
+                  ),
                 ),
               ),
             ],
           ),
         ),
         AnimeHorizontalList(fetch: fetchAnimes, onReady: onAnimeListReady),
-        isAnimeListReady ? Text("Anime List is ready!") : Container(),
       ],
     );
   }

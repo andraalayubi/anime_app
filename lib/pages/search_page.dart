@@ -115,11 +115,11 @@ class _SearchPageState extends State<SearchPage> {
                           margin: EdgeInsets.all(10.0),
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
+                                color: Theme.of(context).colorScheme.secondary,
                                 spreadRadius: 2,
                                 blurRadius: 7,
                                 offset: Offset(0, 3),
@@ -147,7 +147,7 @@ class _SearchPageState extends State<SearchPage> {
                                       style: TextStyle(
                                           fontSize: 18.0,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.deepPurple),
+                                          color: Theme.of(context).colorScheme.secondary),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     SizedBox(height: 4),
@@ -155,21 +155,21 @@ class _SearchPageState extends State<SearchPage> {
                                       'Genres: ${anime.genres?.join(', ')}',
                                       style: TextStyle(
                                           fontSize: 14.0,
-                                          color: Colors.grey[600]),
+                                          color: Theme.of(context).colorScheme.secondary),
                                     ),
                                     SizedBox(height: 2),
                                     Text(
                                       'Year: ${anime.year?.toString() ?? 'N/A'}',
                                       style: TextStyle(
                                           fontSize: 14.0,
-                                          color: Colors.grey[600]),
+                                          color: Theme.of(context).colorScheme.secondary),
                                     ),
                                     SizedBox(height: 2),
                                     Text(
                                       'Rating: ${anime.ratingStars}',
                                       style: TextStyle(
                                           fontSize: 14.0,
-                                          color: Colors.grey[600]),
+                                          color: Theme.of(context).colorScheme.secondary),
                                     ),
                                   ],
                                 ),
@@ -206,7 +206,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.tertiary,
         onTap: _onItemTapped,
       ),
     );

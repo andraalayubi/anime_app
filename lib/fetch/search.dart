@@ -9,8 +9,8 @@ Future<List<Anime>> searchAnimes({
   String? rating,
 }) async {
   var baseUrl = 'https://api.jikan.moe/v4/anime';
-  // var queryParams = <String, String>{};
-  final Map<String, dynamic> queryParams = {};
+  var queryParams = <String, String>{};
+  // final Map<String, dynamic> queryParams = {};
 
   if (query != null) {
     queryParams['q'] = query;
