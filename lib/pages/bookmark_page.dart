@@ -13,9 +13,9 @@ class BookmarkPage extends StatefulWidget {
 
 class _BookmarkPageState extends State<BookmarkPage> {
   late List<int>
-      bookmarkedIds; // Daftar ID anime yang ditandai sebagai bookmark
+      bookmarkedIds;
   List<Anime> bookmarkedAnimes =
-      []; // Daftar anime yang ditandai sebagai bookmark
+      [];
   int _selectedIndex = 2;
 
   @override
@@ -46,7 +46,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
     setState(() {
       bookmarkedIds = ids;
     });
-    loadAnimes(); // Pastikan ini dipanggil setelah setState selesai
+    loadAnimes();
   }
 
   Future<void> saveBookmarks() async {
@@ -54,16 +54,13 @@ class _BookmarkPageState extends State<BookmarkPage> {
   }
 
   Future<void> loadAnimes() async {
-    // Dari daftar ID, muat detail anime untuk setiap ID dan tambahkan ke daftar bookmarkedAnimes
     List<Anime> animes = [];
-    print('BookmarkedIds: $bookmarkedIds');
     for (int id in bookmarkedIds) {
       Anime anime = await animesById(id);
       animes.add(anime);
     }
     setState(() {
       bookmarkedAnimes = animes;
-      print('BookmarkedAnimes: $bookmarkedAnimes');
     });
   }
 
